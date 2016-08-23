@@ -1,6 +1,7 @@
 #' Basic MCMC sampler for Multivariate SDEs
 #'
 #' @export
+<<<<<<< HEAD
 sde.post2 <- function(model, init,
                       init.data, init.params, par.index, dt, nsamples, burn,
                       data.out.ind, prior, fixed.params,
@@ -8,6 +9,15 @@ sde.post2 <- function(model, init,
                       update.data = TRUE, update.params = TRUE,
                       loglik.out = FALSE, last.miss.out = FALSE,
                       verbose = TRUE, debug = FALSE) {
+=======
+sde.post <- function(model, init,
+                     init.data, init.params, par.index, dt, nsamples, burn,
+                     data.out.ind, prior, fixed.params,
+                     rw.jump.sd = NULL,
+                     update.data = TRUE, update.params = TRUE,
+                     loglik.out = FALSE, last.miss.out = FALSE,
+                     verbose = TRUE, debug = FALSE) {
+>>>>>>> rename
   if(class(model) != "sde.model")
     stop("Expecting object of class sde.model.  Use sde.make.model to create.")
   # model constants

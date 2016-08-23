@@ -9,6 +9,7 @@
 require(devtools)
 require(Rcpp)
 
+<<<<<<< HEAD
 pkg.name <- "msdeTest"
 pkg.dir <- getwd()
 
@@ -23,8 +24,27 @@ pkg.dir <- getwd()
 compileAttributes()
 document()
 install()
+=======
+pkg <- "C:/Users/Jerome/Documents/R/msdeTest"
+
+#--- install package ------------------------------------------------------------
+
+compileAttributes(pkg)
+document(pkg)
+install(pkg)
+>>>>>>> rename
 
 
 #--- build ----------------------------------------------------------------------
 
 build()
+<<<<<<< HEAD
+=======
+
+#--- create package skeleton (do this only once) --------------------------------
+
+# Rcpp.package.skeleton(name = pkg.name, cpp_files = "msdeFunctions.cpp",
+#                       example_code = FALSE)
+
+
+>>>>>>> rename

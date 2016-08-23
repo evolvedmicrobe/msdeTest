@@ -1,11 +1,19 @@
 #' Basic Forward Simulation
 #'
 #' @export
+<<<<<<< HEAD
 sde.sim2 <- function(model,
                      init.data, params, dt, dt.sim,
                      N, burn = 0, nreps = 1,
                      max.bad.draws = 5e3, verbose = TRUE,
                      debug = FALSE) {
+=======
+sde.sim <- function(model,
+                    init.data, params, dt, dt.sim,
+                    N, burn = 0, nreps = 1,
+                    max.bad.draws = 5e3, verbose = TRUE,
+                    debug = FALSE) {
+>>>>>>> rename
   if(class(model) != "sde.model")
     stop("Expecting object of class sde.model.  Use sde.make.model to create.")
   # model constants

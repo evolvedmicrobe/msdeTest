@@ -1,7 +1,11 @@
 #' SDE Loglikelihood Function
 #'
 #' @export
+<<<<<<< HEAD
 sde.loglik2 <- function(model, x, dt, theta, debug = FALSE) {
+=======
+sde.loglik <- function(model, x, dt, theta, debug = FALSE) {
+>>>>>>> rename
   if(class(model) != "sde.model")
     stop("Expecting object of class sde.model.  Use sde.make.model to create.")
   # model constants
