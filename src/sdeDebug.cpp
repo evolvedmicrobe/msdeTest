@@ -41,7 +41,8 @@ NumericVector sdeDiff(NumericVector xIn, NumericVector thetaIn, int nReps) {
 
 // SDE log-likelihood evaluation.
 //[[Rcpp::export(".hestLoglik")]]
-NumericVector sdeLogLik(NumericVector xIn, NumericVector thetaIn, NumericVector dT,
+NumericVector sdeLogLik(NumericVector xIn, NumericVector thetaIn,
+			NumericVector dT,
 			int nComp, int nReps) {
   int nDims = sdeModel::nDims;
   int nParams = sdeModel::nParams;

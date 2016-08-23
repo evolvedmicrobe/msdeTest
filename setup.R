@@ -9,8 +9,18 @@
 require(devtools)
 require(Rcpp)
 
-pkg.name <- "msdeTest"
-pkg.dir <- getwd()
+pkg <- "C:/Users/Jerome/Documents/R/msdeTest"
+
+#--- install package ------------------------------------------------------------
+
+compileAttributes(pkg)
+document(pkg)
+install(pkg)
+
+
+#--- build ----------------------------------------------------------------------
+
+build()
 
 #--- create package skeleton (do this only once) --------------------------------
 
@@ -18,13 +28,3 @@ pkg.dir <- getwd()
 #                       example_code = FALSE)
 
 
-#--- install package ------------------------------------------------------------
-
-compileAttributes()
-document()
-install()
-
-
-#--- build ----------------------------------------------------------------------
-
-build()
