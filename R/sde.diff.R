@@ -1,11 +1,7 @@
 #' SDE Diffusion Function
 #'
 #' @export
-<<<<<<< HEAD
-sde.diff2 <- function(model, x, theta) {
-=======
 sde.diff <- function(model, x, theta) {
->>>>>>> rename
   if(class(model) != "sde.model")
     stop("Expecting object of class sde.model.  Use sde.make.model to create.")
   # model constants

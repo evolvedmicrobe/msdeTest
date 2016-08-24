@@ -2,7 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 .hestSim <- function(nDataOut, N, reps, r, delta, MAXBAD, initData, params) {
-<<<<<<< HEAD
     .Call('msdeTest_sdeEulerSim', PACKAGE = 'msdeTest', nDataOut, N, reps, r, delta, MAXBAD, initData, params)
 }
 
@@ -24,28 +23,5 @@
 
 .hestPost <- function(initParams, initData, dT, nDimsPerObs, fixedParams, nSamples, burn, nParamsOut, nDataOut, dataOutRow, dataOutCol, updateParams, updateData, priorType, priorParams, rwJumpSd, updateLogLik, nLogLikOut, updateLastMiss, nLastMissOut) {
     .Call('msdeTest_sdeEulerMCMC', PACKAGE = 'msdeTest', initParams, initData, dT, nDimsPerObs, fixedParams, nSamples, burn, nParamsOut, nDataOut, dataOutRow, dataOutCol, updateParams, updateData, priorType, priorParams, rwJumpSd, updateLogLik, nLogLikOut, updateLastMiss, nLastMissOut)
-=======
-    .Call('msdeTest2_sdeEulerSim', PACKAGE = 'msdeTest2', nDataOut, N, reps, r, delta, MAXBAD, initData, params)
-}
-
-.hestDrift <- function(xIn, thetaIn, nReps) {
-    .Call('msdeTest2_sdeDrift', PACKAGE = 'msdeTest2', xIn, thetaIn, nReps)
-}
-
-.hestDiff <- function(xIn, thetaIn, nReps) {
-    .Call('msdeTest2_sdeDiff', PACKAGE = 'msdeTest2', xIn, thetaIn, nReps)
-}
-
-.hestLoglik <- function(xIn, thetaIn, dT, nComp, nReps) {
-    .Call('msdeTest2_sdeLogLik', PACKAGE = 'msdeTest2', xIn, thetaIn, dT, nComp, nReps)
-}
-
-.hestLogprior <- function(xIn, thetaIn, priorParams, priorType, nRv, nReps) {
-    .Call('msdeTest2_sdePrior', PACKAGE = 'msdeTest2', xIn, thetaIn, priorParams, priorType, nRv, nReps)
-}
-
-.hestPost <- function(initParams, initData, dT, nDimsPerObs, fixedParams, nSamples, burn, nParamsOut, nDataOut, dataOutRow, dataOutCol, updateParams, updateData, priorType, priorParams, rwJumpSd, updateLogLik, nLogLikOut, updateLastMiss, nLastMissOut) {
-    .Call('msdeTest2_sdeEulerMCMC', PACKAGE = 'msdeTest2', initParams, initData, dT, nDimsPerObs, fixedParams, nSamples, burn, nParamsOut, nDataOut, dataOutRow, dataOutCol, updateParams, updateData, priorType, priorParams, rwJumpSd, updateLogLik, nLogLikOut, updateLastMiss, nLastMissOut)
->>>>>>> rename
 }
 

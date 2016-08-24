@@ -1,11 +1,7 @@
 #' SDE Drift Function
 #'
 #' @export
-<<<<<<< HEAD
-sde.drift2 <- function(model, x, theta) {
-=======
 sde.drift <- function(model, x, theta) {
->>>>>>> rename
   if(class(model) != "sde.model")
     stop("Expecting object of class sde.model.  Use sde.make.model to create.")
   # model constants

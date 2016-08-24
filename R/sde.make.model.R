@@ -1,15 +1,9 @@
 #' Create sde.model object
 #'
 #' @export
-<<<<<<< HEAD
-sde.make.model2 <- function(code, ndims, nparams,
-                            data.names, param.names, custom.names,
-                            cpp.out = TRUE, ..., debug = FALSE) {
-=======
 sde.make.model <- function(code, ndims, nparams,
                            data.names, param.names, custom.names,
                            cpp.out = TRUE, ..., debug = FALSE) {
->>>>>>> rename
   # default data and parameter names
   if(missing(data.names)) data.names <- paste0("X", 1:ndims)
   if(missing(param.names)) param.names <- paste0("theta", 1:nparams)
@@ -31,11 +25,7 @@ sde.make.model <- function(code, ndims, nparams,
   #} else {
   #  logCustomPrior <- "double CustomPrior::logPrior(double params[], double x[]) {
   #return(0.0);
-<<<<<<< HEAD
-#}"
-=======
   #}"
->>>>>>> rename
   #}
   # create c++ code
   header.names <- c("sdeModel.h", "mvnUtils.h", "sdeUtils.h",
