@@ -1,5 +1,5 @@
 #' Simulation and inference for multivariate stochastic differential equation models
 #'
-#' @useDynLib msdeTest2
+#' @useDynLib msdeTest
 #' @importFrom Rcpp sourceCpp
 "_PACKAGE"
