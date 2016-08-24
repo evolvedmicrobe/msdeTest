@@ -16,7 +16,7 @@ NumericVector sdeDrift(NumericVector xIn, NumericVector thetaIn, int nReps) {
   sdeModel *sde = new sdeModel[nReps];
   // *** parallelizable for-loop ***
   for(int ii = 0; ii < nReps; ii++) {
-    sdeDr(&dr[ii*nDims], &x[ii*nDims], &theta[ii*nParams], &sde[ii]);
+    sde[ii].sdeDr(&dr[ii*nDims], &x[ii*nDims], &theta[ii*nParams]);
   }
   delete [] sde;
   return drOut;
@@ -33,7 +33,7 @@ NumericVector sdeDiff(NumericVector xIn, NumericVector thetaIn, int nReps) {
   sdeModel *sde = new sdeModel[nReps];
   // *** parallelizable for-loop ***
   for(int ii = 0; ii < nReps; ii++) {
-    sdeDf(&df[ii*nDims*nDims], &x[ii*nDims], &theta[ii*nParams], &sde[ii]);
+    sde[ii].sdeDf(&df[ii*nDims*nDims], &x[ii*nDims], &theta[ii*nParams]);
   }
   delete [] sde;
   return dfOut;

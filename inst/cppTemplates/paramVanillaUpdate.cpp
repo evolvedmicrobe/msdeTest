@@ -6,7 +6,7 @@ using namespace Rcpp;
 #include "sdeMCMC.h"
 
 // componentwise vanilla MH parameter updates
-void sdeMCMC::paramVanillaUpdate(double jumpSd[], int paramAccept[]) {
+void sdeMCMC::paramVanillaUpdate(double *jumpSd, int *paramAccept) {
   double acc, currLoglik, propLoglik;
   int ii;
   // initialize

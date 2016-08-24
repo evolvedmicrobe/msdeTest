@@ -15,8 +15,8 @@ class sdeModel {
 public:
   static const int nParams = 5;
   static const int nDims = 2;
-  friend void sdeDr(double *dr, double *x, double *theta, sdeModel *sde);
-  friend void sdeDf(double *df, double *x, double *theta, sdeModel *sde);
+  void sdeDr(double *dr, double *x, double *theta);
+  void sdeDf(double *df, double *x, double *theta);
   static bool isValidData(double *x);
   static bool isValidParams(double *theta);
   sdeModel();

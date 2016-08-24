@@ -9,12 +9,12 @@
 void mvEuler(double *mean, double *sd,
 	     double *x0, double t, double t2, double *theta,
 	     sdeModel *sde) {
-  sdeDr(mean, x0, theta, sde);
+  sde->sdeDr(mean, x0, theta);
   v_mult(mean, t, sdeModel::nDims);
   for(int jj = 0; jj < sdeModel::nDims; jj++) {
     mean[jj] += x0[jj];
   }
-  sdeDf(sd, x0, theta, sde);
+  sde->sdeDf(sd, x0, theta);
   U_mult(sd, t2, sdeModel::nDims);
   return;
 }

@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // sdeEulerSim
 List sdeEulerSim(int nDataOut, int N, int reps, int r, double delta, int MAXBAD, NumericVector initData, NumericVector params);
-RcppExport SEXP msdeTest_sdeEulerSim(SEXP nDataOutSEXP, SEXP NSEXP, SEXP repsSEXP, SEXP rSEXP, SEXP deltaSEXP, SEXP MAXBADSEXP, SEXP initDataSEXP, SEXP paramsSEXP) {
+RcppExport SEXP msdeTest2_sdeEulerSim(SEXP nDataOutSEXP, SEXP NSEXP, SEXP repsSEXP, SEXP rSEXP, SEXP deltaSEXP, SEXP MAXBADSEXP, SEXP initDataSEXP, SEXP paramsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
@@ -25,7 +25,7 @@ END_RCPP
 }
 // sdeDrift
 NumericVector sdeDrift(NumericVector xIn, NumericVector thetaIn, int nReps);
-RcppExport SEXP msdeTest_sdeDrift(SEXP xInSEXP, SEXP thetaInSEXP, SEXP nRepsSEXP) {
+RcppExport SEXP msdeTest2_sdeDrift(SEXP xInSEXP, SEXP thetaInSEXP, SEXP nRepsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
@@ -38,7 +38,7 @@ END_RCPP
 }
 // sdeDiff
 NumericVector sdeDiff(NumericVector xIn, NumericVector thetaIn, int nReps);
-RcppExport SEXP msdeTest_sdeDiff(SEXP xInSEXP, SEXP thetaInSEXP, SEXP nRepsSEXP) {
+RcppExport SEXP msdeTest2_sdeDiff(SEXP xInSEXP, SEXP thetaInSEXP, SEXP nRepsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
@@ -51,7 +51,7 @@ END_RCPP
 }
 // sdeLogLik
 NumericVector sdeLogLik(NumericVector xIn, NumericVector thetaIn, NumericVector dT, int nComp, int nReps);
-RcppExport SEXP msdeTest_sdeLogLik(SEXP xInSEXP, SEXP thetaInSEXP, SEXP dTSEXP, SEXP nCompSEXP, SEXP nRepsSEXP) {
+RcppExport SEXP msdeTest2_sdeLogLik(SEXP xInSEXP, SEXP thetaInSEXP, SEXP dTSEXP, SEXP nCompSEXP, SEXP nRepsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
@@ -66,7 +66,7 @@ END_RCPP
 }
 // sdePrior
 NumericVector sdePrior(NumericVector xIn, NumericVector thetaIn, List priorParams, int priorType, int nRv, int nReps);
-RcppExport SEXP msdeTest_sdePrior(SEXP xInSEXP, SEXP thetaInSEXP, SEXP priorParamsSEXP, SEXP priorTypeSEXP, SEXP nRvSEXP, SEXP nRepsSEXP) {
+RcppExport SEXP msdeTest2_sdePrior(SEXP xInSEXP, SEXP thetaInSEXP, SEXP priorParamsSEXP, SEXP priorTypeSEXP, SEXP nRvSEXP, SEXP nRepsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
@@ -82,7 +82,7 @@ END_RCPP
 }
 // sdeEulerMCMC
 List sdeEulerMCMC(NumericVector initParams, NumericVector initData, NumericVector dT, IntegerVector nDimsPerObs, LogicalVector fixedParams, int nSamples, int burn, int nParamsOut, int nDataOut, IntegerVector dataOutRow, IntegerVector dataOutCol, double updateParams, double updateData, int priorType, List priorParams, NumericVector rwJumpSd, int updateLogLik, int nLogLikOut, int updateLastMiss, int nLastMissOut);
-RcppExport SEXP msdeTest_sdeEulerMCMC(SEXP initParamsSEXP, SEXP initDataSEXP, SEXP dTSEXP, SEXP nDimsPerObsSEXP, SEXP fixedParamsSEXP, SEXP nSamplesSEXP, SEXP burnSEXP, SEXP nParamsOutSEXP, SEXP nDataOutSEXP, SEXP dataOutRowSEXP, SEXP dataOutColSEXP, SEXP updateParamsSEXP, SEXP updateDataSEXP, SEXP priorTypeSEXP, SEXP priorParamsSEXP, SEXP rwJumpSdSEXP, SEXP updateLogLikSEXP, SEXP nLogLikOutSEXP, SEXP updateLastMissSEXP, SEXP nLastMissOutSEXP) {
+RcppExport SEXP msdeTest2_sdeEulerMCMC(SEXP initParamsSEXP, SEXP initDataSEXP, SEXP dTSEXP, SEXP nDimsPerObsSEXP, SEXP fixedParamsSEXP, SEXP nSamplesSEXP, SEXP burnSEXP, SEXP nParamsOutSEXP, SEXP nDataOutSEXP, SEXP dataOutRowSEXP, SEXP dataOutColSEXP, SEXP updateParamsSEXP, SEXP updateDataSEXP, SEXP priorTypeSEXP, SEXP priorParamsSEXP, SEXP rwJumpSdSEXP, SEXP updateLogLikSEXP, SEXP nLogLikOutSEXP, SEXP updateLastMissSEXP, SEXP nLastMissOutSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;

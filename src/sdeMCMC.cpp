@@ -155,7 +155,7 @@ void mvEraker(double *mean, double *sd,
   for(int jj = 0; jj < sdeModel::nDims; jj++) {
     mean[jj] = x0[jj] * b + x2[jj] * (1-b);
   }
-  sdeDf(sd, x0, theta, sde);
+  sde->sdeDf(sd, x0, theta);
   U_mult(sd, b2, sdeModel::nDims);
   return;
 }

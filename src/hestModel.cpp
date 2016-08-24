@@ -12,13 +12,13 @@ sdeModel::sdeModel() {
 sdeModel::~sdeModel() {} // do nothing
 
 // todo: drop t and sqrtT in these functions
-void sdeDr(double *dr, double *x, double *theta, sdeModel *sde) {
+void sdeModel::sdeDr(double *dr, double *x, double *theta) {
   dr[0] = (theta[0] - .125 * x[1]*x[1]); // x
   dr[1] = (theta[2]/x[1] - .5 * theta[1]*x[1]); // z
   return;
 }
 
-void sdeDf(double *df, double *x, double *theta, sdeModel *sde) {
+void sdeModel::sdeDf(double *df, double *x, double *theta) {
   df[0] = .5 * x[1];
   df[2] = theta[3];
   df[3] = sqrt(1.0-theta[4]*theta[4]) * df[2];
