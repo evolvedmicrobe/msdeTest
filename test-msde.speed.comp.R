@@ -4,14 +4,13 @@
 # files into 1 before compile on-the-fly with Rcpp
 # the new version is written with OOP and checks the speed effect of (*)
 
-require(msde2) # old version
-require(msdeTest2) # new version
-
+require(msde) # old version
+require(msdeTest) # new version
 pkg1 <- function(fun) {
-  eval(parse(text = paste0("msde2::", fun)))
+  eval(parse(text = paste0("msde::", fun)))
 }
 pkg2 <- function(fun) {
-  eval(parse(text = paste0("msdeTest2::", fun)))
+  eval(parse(text = paste0("msdeTest::", fun)))
 }
 
 # the test model is called heston's model, which is an sde with
@@ -41,7 +40,7 @@ ndims <- 2
 nparams <- 5
 param.names <- c("alpha", "gamma", "beta", "sigma", "rho")
 data.names <- c("X", "Z")
-hmod2 <- file.path(msdeTest2:::.msdeCppPath, "hestModel.cpp")
+hmod2 <- file.path(pkg2(":.msdeCppPath"), "hestModel.cpp")
 hmod2 <- pkg2("sde.make.model")(code = hmod2,
                                 ndims = ndims, nparams = nparams,
                                 param.names = param.names,
@@ -101,6 +100,8 @@ time.mt <- system.time({
 
 # should be imperceptible (perhaps not anymore???)
 c(m = time.m[3], mt = time.mt[3], mto = time.mto[3])/time.m[3]
+##  m.elapsed  mt.elapsed mto.elapsed
+##  1.0000000   0.8846154   1.0000000
 
 #--- forward simulation ---------------------------------------------------------
 
@@ -109,6 +110,7 @@ c(m = time.m[3], mt = time.mt[3], mto = time.mto[3])/time.m[3]
 # if you want to do speed comparisons with exactly the same output
 # (otherwise output is stochastic) then change this to true
 same.rnd <- TRUE
+SEED <- 3843
 
 theta <- c(alpha = 0.1, gamma = 1, beta = 0.8, sigma = 0.6, rho = -0.8)
 x0 <- c(X = log(1000), Z = 0.1)
@@ -117,19 +119,19 @@ x0 <- c(X = log(1000), Z = 0.1)
 nObs <- 1e3
 nReps <- 1e3
 dT <- 1/252
-if(same.rnd) set.seed(3843)
+if(same.rnd) set.seed(SEED)
 time.m <- system.time({
   hsim.m <- pkg1("sde.sim")(model = hmod, init.data = x0, params = theta,
                             dt = dT, dt.sim = dT/100,
                             N = nObs, nreps = nReps)
 })
-if(same.rnd) set.seed(3843)
+if(same.rnd) set.seed(SEED)
 time.mt <- system.time({
   hsim.mt <- pkg2("sde.sim")(model = hmod2, init.data = x0, params = theta,
                              dt = dT, dt.sim = dT/100,
                              N = nObs, nreps = nReps)
 })
-if(same.rnd) set.seed(3843)
+if(same.rnd) set.seed(SEED)
 time.mto <- system.time({
   hsim.mto <- hest.sim(model = hmod2, init.data = x0, params = theta,
                        dt = dT, dt.sim = dT/100, N = nObs, nreps = nReps)
@@ -142,12 +144,17 @@ if(same.rnd) {
           function(nm) max(abs(hsim.m[[nm]] - hsim.mto[[nm]]))))
 }
 
+
+# irritating loss of performance
 c(m = time.m[3], mt = time.mt[3], mto = time.mto[3])/time.m[3]
-# why the fuck is the OOP version 5% slower??
+##  m.elapsed  mt.elapsed mto.elapsed
+##   1.000000    1.028704    1.085337
+
 
 #--- MCMC draws -----------------------------------------------------------------
 
 same.rnd <- TRUE
+SEED <- 2531
 
 # simulate data
 nObs <- 250
@@ -173,7 +180,7 @@ update.data <- TRUE
 nsamples <- ifelse(update.data, 2e4, 4e4)
 burn <- 1e3
 
-if(same.rnd) set.seed(2531)
+if(same.rnd) set.seed(SEED)
 time.m <- system.time({
   hpost.m <- pkg1("sde.post")(model = hmod, init = init,
                               nsamples = nsamples, burn = burn,
@@ -183,7 +190,7 @@ time.m <- system.time({
                               update.data = update.data)
 })
 
-if(same.rnd) set.seed(2531)
+if(same.rnd) set.seed(SEED)
 time.mt <- system.time({
   hpost.mt <- pkg2("sde.post")(model = hmod2, init = init,
                                nsamples = nsamples, burn = burn,
@@ -193,7 +200,7 @@ time.mt <- system.time({
                                update.data = update.data)
 })
 
-if(same.rnd) set.seed(2531)
+if(same.rnd) set.seed(SEED)
 time.mto <- system.time({
   hpost.mto <- hest.post(model = hmod, init = init,
                          nsamples = nsamples, burn = burn,
@@ -211,9 +218,7 @@ if(same.rnd) {
 }
 
 
+# gross
 c(m = time.m[3], mt = time.mt[3], mto = time.mto[3])/time.m[3]
-# why is this lil bitch 7% slower??? that's 5mins slower per hour!
-# why the FUCK do i learn how to program better if it just makes shit
-# slower!!!
-
-# update: down to 4% slower.
+##  m.elapsed  mt.elapsed mto.elapsed
+##   1.000000    1.087065    1.210614
