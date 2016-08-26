@@ -28,9 +28,9 @@ hest.loglik <- function(model, x, dt, theta, debug = FALSE) {
   if(length(dt) == 1) dt <- rep(dt, ncomp-1)
   if(length(dt) != ncomp-1) stop("Incorrectly specified dt.")
   # compute
-  ans <- .hestLoglik(x = as.double(x),
-                     theta = as.double(theta), deltaT = as.double(dt),
-                     nCompData = as.integer(ncomp),
+  ans <- .hestLoglik(xIn = as.double(x),
+                     thetaIn = as.double(theta), dT = as.double(dt),
+                     nComp = as.integer(ncomp),
                      nReps = as.integer(nreps))
   ans
 }

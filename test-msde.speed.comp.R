@@ -98,10 +98,49 @@ time.mt <- system.time({
   df.mt <- pkg2("sde.diff")(model = hmod2, x = X0, theta = Theta)
 })
 
-# should be imperceptible (perhaps not anymore???)
+# nice boost
 c(m = time.m[3], mt = time.mt[3], mto = time.mto[3])/time.m[3]
 ##  m.elapsed  mt.elapsed mto.elapsed
 ##  1.0000000   0.8846154   1.0000000
+
+#--- loglikelihood evaluations --------------------------------------------------
+
+nReps <- 1e4
+nObs <- 1e3
+dT <- 1/252
+
+# initialize
+theta <- c(alpha = 0.1, gamma = 1, beta = 0.8, sigma = 0.6, rho = -0.8)
+x0 <- c(X = log(1000), Z = 0.1)
+Theta <- apply(t(replicate(nReps, theta)), 2, jitter)
+X0 <- apply(t(replicate(nReps, x0)), 2, jitter)
+
+# generate data
+hsim <- pkg1("sde.sim")(model = hmod, init.data = X0, params = Theta,
+                        dt = dT, dt.sim = dT, N = nObs, nreps = nReps)
+
+# loglikelihood calcs
+time.m <- system.time({
+  ll.m <- pkg1("sde.loglik")(model = hmod, x = X0, dt = dT,
+                             theta = Theta)
+})
+time.mto <- system.time({
+  ll.mto <- hest.loglik(model = hmod, x = X0, dt = dT,
+                        theta = Theta)
+})
+time.mt <- system.time({
+  ll.mt <- pkg2("sde.loglik")(model = hmod2, x = X0, dt = dT,
+                              theta = Theta)
+})
+
+range(ll.m-ll.mt)
+range(ll.m-ll.mto)
+
+# still getting overhead.
+c(m = time.m[3], mt = time.mt[3], mto = time.mto[3])/time.m[3]
+##  m.elapsed  mt.elapsed mto.elapsed
+##   1.000000    1.046895    1.204056
+
 
 #--- forward simulation ---------------------------------------------------------
 
