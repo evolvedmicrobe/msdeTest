@@ -3,6 +3,7 @@
 
 #include "sdeModel.h"
 #include "Prior.h"
+#include "sdeData.h"
 #include "sdeMCMC.h"
 
 //[[Rcpp::export("sde.model$drift")]]
@@ -50,7 +51,7 @@ NumericVector sdeLogLik(NumericVector xIn, NumericVector thetaIn,
   double *theta = REAL(thetaIn);
   NumericVector llOut(nReps);
   double *ll = REAL(llOut);
-  sdeMCMC sdeLL(nComp, REAL(dT));
+  sdeData sdeLL(nComp, REAL(dT));
   for(int ii=0; ii<nReps; ii++) {
     ll[ii] = sdeLL.loglik(&theta[ii*nParams], &x[ii*nDims*nComp]);
   }

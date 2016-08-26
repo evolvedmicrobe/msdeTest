@@ -136,10 +136,11 @@ time.mt <- system.time({
 range(ll.m-ll.mt)
 range(ll.m-ll.mto)
 
-# still getting overhead.
+# still getting overhead. now with loglik as a method of sdeData
+# way worse performance
 c(m = time.m[3], mt = time.mt[3], mto = time.mto[3])/time.m[3]
 ##  m.elapsed  mt.elapsed mto.elapsed
-##   1.000000    1.046895    1.204056
+##   1.000000    1.346966    1.245383
 
 
 #--- forward simulation ---------------------------------------------------------

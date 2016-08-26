@@ -29,9 +29,9 @@ sde.make.model <- function(code, ndims, nparams,
   #}
   # create c++ code
   header.names <- c("sdeModel.h", "mvnUtils.h", "sdeUtils.h",
-                    "Prior.h", "mcmcUtils.h", "sdeMCMC.h")
-  cpp.names <- c("sdeUtils.cpp", "Prior.cpp",
-                 "mvnUtils.cpp", "mcmcUtils.cpp", "sdeMCMC.cpp",
+                    "Prior.h", "sdeData.h", "mcmcUtils.h", "sdeMCMC.h")
+  cpp.names <- c("sdeUtils.cpp", "Prior.cpp", "mvnUtils.cpp",
+                 "sdeData.cpp", "mcmcUtils.cpp", "sdeMCMC.cpp",
                  "missGibbsUpdate.cpp", "paramVanillaUpdate.cpp",
                  "sdeDebug.cpp", "EulerSim.cpp", "SimpleMCMC.cpp")
   #.msdeCppPath <- "C:/Users/Jerome/Documents/R/msdeTest/inst/cppTemplate"
