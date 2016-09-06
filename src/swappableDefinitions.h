@@ -4,9 +4,14 @@
 #ifndef swappableDefinitions_h
 #define swappableDefinitions_h 1
 
-#include "libm_log.h"
-#define LOG libmlog
-
+#ifndef __APPLE__
+  // This function is faster on windows
+  #include "libm_log.h"
+  #define LOG libmlog
+#else
+  // The libm implementation of log on Mac OSX is plenty fast.
+  #define LOG log 
+#endif
 
 
 
