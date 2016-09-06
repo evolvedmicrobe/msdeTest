@@ -49,13 +49,13 @@ List sdeEulerSim(int nDataOut,
 	mvEuler(mvX[ii]->mean, mvX[ii]->sd, X, delta, sqrtDelta,
 		&params[ii*nParams], &sde[ii]);
 	for(kk = 0; kk < nDims; kk++) {
-	  mvX[ii]->z[kk] = norm_rand();
+	  mvX[ii]->z[kk] = NORM_RAND();
 	}
 	xmvn(tmpX, mvX[ii]->z, mvX[ii]->mean, mvX[ii]->sd, nDims);
 	// validate draw
 	while(!sdeModel::isValidData(tmpX) && bad < MAXBAD) {
 	  for(kk = 0; kk < nDims; kk++) {
-	    mvX[ii]->z[kk] = norm_rand();
+	    mvX[ii]->z[kk] = NORM_RAND();
 	  }
 	  xmvn(tmpX, mvX[ii]->z, mvX[ii]->mean, mvX[ii]->sd, nDims);
 	  bad++;

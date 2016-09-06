@@ -18,7 +18,7 @@ void sdeMCMC::paramVanillaUpdate(double *jumpSd, int *paramAccept) {
   for(ii = 0; ii < nParams; ii++) {
     if(!fixedTheta[ii]) {
     // proposal
-    propTheta[ii] = currTheta[ii] + jumpSd[ii] * norm_rand();
+    propTheta[ii] = currTheta[ii] + jumpSd[ii] * NORM_RAND();
     // only calculate acceptance if valid
     if(sdeModel::isValidParams(propTheta)) {
       // likelihood

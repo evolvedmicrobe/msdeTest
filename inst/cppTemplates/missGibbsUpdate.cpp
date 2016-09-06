@@ -27,13 +27,13 @@ void sdeMCMC::missGibbsUpdate(double *jumpSd, int *gibbsAccept, int *paramAccept
 		 &currX[(ii+1)*nDims], B[ii], sqrtB[ii], currTheta, &sde[ii]);
 	// partial observations
 	if(nObsComp[ii] == 0) {
-	  for(jj = 0; jj < nDims; jj++) mvX[ii]->z[jj] = norm_rand();
+	  for(jj = 0; jj < nDims; jj++) mvX[ii]->z[jj] = NORM_RAND();
 	}
 	else {
 	  zmvn(mvX[ii]->z, &currX[ii*nDims], mvX[ii]->mean,
 	       mvX[ii]->sd, nDims, nObsComp[ii]);
 	  for(jj = nObsComp[ii]; jj < nDims; jj++) {
-	    mvX[ii]->z[jj] = norm_rand();
+	    mvX[ii]->z[jj] = NORM_RAND();
 	  }
 	}
 	// proposals
@@ -87,14 +87,14 @@ void sdeMCMC::missGibbsUpdate(double *jumpSd, int *gibbsAccept, int *paramAccept
     // partial observations
     if(nObsComp[ii] == 0) {
       for(jj = 0; jj < nDims; jj++) {
-	mvX[ii]->z[jj] = norm_rand();
+	mvX[ii]->z[jj] = NORM_RAND();
       }
     }
     else {
       zmvn(mvX[ii]->z, &currX[ii*nDims], mvX[ii]->mean,
 	   mvX[ii]->sd, nDims, nObsComp[ii]);
       for(jj = nObsComp[ii]; jj < nDims; jj++) {
-	mvX[ii]->z[jj] = norm_rand();
+	mvX[ii]->z[jj] = NORM_RAND();
       }
     }
     // proposals
@@ -123,7 +123,7 @@ void sdeMCMC::missGibbsUpdate(double *jumpSd, int *gibbsAccept, int *paramAccept
     // random walk metropolis
     for(jj = 0; jj < nMiss0; jj++) {
       // proposal
-      propX[nObsComp[0]+jj] = currX[nObsComp[0]+jj] + jumpSd[nParams+jj] * norm_rand();
+      propX[nObsComp[0]+jj] = currX[nObsComp[0]+jj] + jumpSd[nParams+jj] * NORM_RAND();
       if(sdeModel::isValidData(&propX[ii*nDims])) {
 	// acceptance rate.
 	// target 1
