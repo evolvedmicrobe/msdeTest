@@ -37,20 +37,6 @@ sdeData::~sdeData() {
 
 ///////////////////////////////////////////////////////////////
 
-// euler approximation mean and standard deviation
-// NOTE: sde = upper triangular cholesky factor
-void sdeData::mvEuler(double *mean, double *sd,
-	     double *x0, double *theta, int iObs0) {
-  sde[iObs0].sdeDr(mean, x0, theta);
-  v_mult(mean, dT[iObs0], nDims);
-  for(int jj = 0; jj < nDims; jj++) {
-    mean[jj] += x0[jj];
-  }
-  sde[iObs0].sdeDf(sd, x0, theta);
-  U_mult(sd, sqrtDT[iObs0], nDims);
-  return;
-}
-
 ///////////////////////////////////////////////////////////////
 double sdeData::loglik(double *theta, double *x) {
   double ll = 0;
