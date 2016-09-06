@@ -121,7 +121,7 @@ double lmvn(double *x, double *z, double *mean, double *cholSd, int n) {
     tmpSum = 0.0;
     for(jj = 0; jj < ii; jj++) tmpSum += cholSd[colI + jj] * z[jj];
     val = (resi - tmpSum) / cholSd[colI + ii];
-    tmpSum3 += log(cholSd[colI + ii]);
+    tmpSum3 += LOG(cholSd[colI + ii]);
     z[ii] = val;
     tmpSum2 += (val * val);
     colI += n;
@@ -176,7 +176,7 @@ double lgcop(double *x, double *qNorm, int *nBreaks, double *range,
   }
   tmpSum *= 0.5;
   for(ii = 0; ii < n; ii++) {
-    tmpSum += log(RhoCholSd[n*ii + ii]);
+    tmpSum += LOG(RhoCholSd[n*ii + ii]);
   }
   lp -= tmpSum;
   return(lp);

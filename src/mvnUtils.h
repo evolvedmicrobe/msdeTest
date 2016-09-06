@@ -3,8 +3,11 @@
 #ifndef mvnUtils_h
 #define mvnUtils_h 1
 
+
 #include <Rcpp.h>
+#include "swappableDefinitions.h"
 using namespace Rcpp;
+
 
 // a few utility functions for multivariate normals
 
