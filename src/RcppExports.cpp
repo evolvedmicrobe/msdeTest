@@ -23,6 +23,27 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// plnorm_rand
+double plnorm_rand();
+RcppExport SEXP msdeTest_plnorm_rand() {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    __result = Rcpp::wrap(plnorm_rand());
+    return __result;
+END_RCPP
+}
+// rplnorm
+NumericVector rplnorm(int n);
+RcppExport SEXP msdeTest_rplnorm(SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    __result = Rcpp::wrap(rplnorm(n));
+    return __result;
+END_RCPP
+}
 // sdeDrift
 NumericVector sdeDrift(NumericVector xIn, NumericVector thetaIn, int nReps);
 RcppExport SEXP msdeTest_sdeDrift(SEXP xInSEXP, SEXP thetaInSEXP, SEXP nRepsSEXP) {

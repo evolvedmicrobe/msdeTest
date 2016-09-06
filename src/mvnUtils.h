@@ -5,7 +5,8 @@
 
 
 #include <Rcpp.h>
-#include "swappableDefinitions.h"
+#include "logSwapper.h"
+#include "normRandSwapper.h"
 using namespace Rcpp;
 
 

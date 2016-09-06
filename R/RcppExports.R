@@ -5,6 +5,47 @@
     .Call('msdeTest_sdeEulerSim', PACKAGE = 'msdeTest', nDataOut, N, reps, r, delta, MAXBAD, initData, params)
 }
 
+plnorm_rand <- function() {
+    .Call('msdeTest_plnorm_rand', PACKAGE = 'msdeTest')
+}
+
+#' Simulate random standard normals using the polar form of the Box-Muller 
+#' transformation.  Box-Muller is much faster than the Inversion method,
+#' and this method is a faster version of that provided that the unif_rand
+#' function is fast (otherwise performance is near BM).  Sample timings below.
+#'
+#'  > n = 5000000
+#'  > message("R standard")
+#'  R standard
+#'  > RNGkind(kind="Mersenne-Twister")
+#'  > RNGkind(normal.kind = "Inversion")
+#'  > system.time(rnorm(n))
+#'     user  system elapsed 
+#'    0.444   0.004   0.450 
+#'  > message("BM + Twister")
+#'  BM + Twister
+#'  > RNGkind(normal.kind = "Box-Muller")
+#'  > system.time(rnorm(n))
+#'     user  system elapsed 
+#'    0.278   0.003   0.282 
+#'  > message("Polar + Twister")
+#'  Polar + Twister
+#'  > system.time(msdeTest:::rplnorm(n))
+#'     user  system elapsed 
+#'    0.270   0.003   0.274 
+#'  > message("Polar + Carry")
+#'  Polar + Carry
+#'  > RNGkind(kind="Marsaglia-Multicarry")
+#'  > system.time(msdeTest:::rplnorm(n))
+#'     user  system elapsed 
+#'    0.234   0.003   0.238 
+#' @param n Number of draws to take.
+#' @return The size of the multinomial distributions
+#' @export
+rplnorm <- function(n) {
+    .Call('msdeTest_rplnorm', PACKAGE = 'msdeTest', n)
+}
+
 .hestDrift <- function(xIn, thetaIn, nReps) {
     .Call('msdeTest_sdeDrift', PACKAGE = 'msdeTest', xIn, thetaIn, nReps)
 }
